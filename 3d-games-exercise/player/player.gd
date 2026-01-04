@@ -12,10 +12,20 @@ const GRAVITY_VALUE = 20.0
 
 const FALLING_VALUE_RESET = -10.0
 
+const FOV_ORIGINAL = 75.0
+const FOV_ZOOM = 35.0
+const ZOOM_SPEED = 300.0
+
+const CAMERA_ZOOM_X_SENSIBILITY=0.1
+const CAMERA_ZOOM_Y_SENSIBILITY=0.1
+
 var player_speed =0.0
 var character_max_speed=CHARACTER_MAX_SPEED
 var jump_count=0
 
+var fov=FOV_ORIGINAL
+var camera_x_sensibility=CAMERA_X_SENSIBLITY
+var camera_y_sensibility=CAMERA_Y_SENSIBLITY
 
 ######################################
 ## TODO 							##
@@ -35,19 +45,35 @@ func _unhandled_input(event: InputEvent) -> void:
 	#######################################################
 	## mouse rotation handler ##
 	if event is InputEventMouseMotion:
-		rotation_degrees.y -= event.relative.x * CAMERA_X_SENSIBLITY
+		if fov == FOV_ZOOM:
+			camera_x_sensibility=CAMERA_ZOOM_X_SENSIBILITY
+			camera_y_sensibility=CAMERA_ZOOM_Y_SENSIBILITY
+		else:
+			camera_x_sensibility=CAMERA_X_SENSIBLITY
+			camera_y_sensibility=CAMERA_Y_SENSIBLITY
+			
+		rotation_degrees.y -= event.relative.x * camera_x_sensibility
 		
-		%Camera3D.rotation_degrees.x -= event.relative.y * CAMERA_Y_SENSIBLITY
+		%Camera3D.rotation_degrees.x -= event.relative.y * camera_y_sensibility
 		%Camera3D.rotation_degrees.x = clamp(%Camera3D.rotation_degrees.x, CAMERA_MAX_ROTATION_Y_DOWN, CAMERA_MAX_ROTATION_Y_UP)
 	
 		#print(%Camera3D.rotation_degrees.x)
 		
-	#######################################################
 	## Release mouse appearance on esc press ##
 	elif event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+
+func shoot_bullet():
+	const BULLET_3D = preload("uid://d4d0fwuexdf7a")
+	var new_bullet=BULLET_3D.instantiate()
+	%Marker3D.add_child(new_bullet)
 	
+	new_bullet.global_transform=%Marker3D.global_transform
 	
+	%Timer.start()
+
+
 func _physics_process(delta: float) -> void:
 	#######################################################
 	## Player Movement ##
@@ -120,3 +146,19 @@ func _physics_process(delta: float) -> void:
 		position=Vector3(0,1,0)
 	
 	move_and_slide()
+	
+	
+	
+	##################################################
+	## Shooting input ##
+	if Input.is_action_pressed("shoot") and %Timer.is_stopped():
+		shoot_bullet()
+	
+	##################################################
+	## trying to zoom on right click ##
+	if Input.is_action_pressed("zoom") :
+		fov-=ZOOM_SPEED*delta
+	else :
+		fov+=ZOOM_SPEED*delta
+	fov=clamp(fov, FOV_ZOOM, FOV_ORIGINAL)
+	%Camera3D.set_fov(fov)

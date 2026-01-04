@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://dbwc8wu5a7p7k" path="res://player/projectile/projectile_3d.tscn" id="1_ciaf2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_84yui"]
-radius = 0.3
+radius = 0.07935389
 
 [node name="Bullet3D" type="Area3D"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+top_level = true
 script = ExtResource("1_84yui")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_84yui")
 
 [node name="Projectile3D" parent="." instance=ExtResource("1_ciaf2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 0, 0, 0)
