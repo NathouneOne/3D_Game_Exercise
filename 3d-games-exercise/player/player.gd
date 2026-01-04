@@ -5,7 +5,12 @@ const CAMERA_Y_SENSIBLITY = 0.3
 const CAMERA_MAX_ROTATION_Y_UP = 70.0
 const CAMERA_MAX_ROTATION_Y_DOWN = -70.0
 const CHARACTER_MAX_SPEED = 7.0
+const CHARACTER_ACCELERATION = 20.0
+const CHARACTER_JUMP_SPEED = 10.0
+const GRAVITY_VALUE = 20.0
 
+
+var player_speed =0.0
 
 
 func _ready() -> void:
@@ -38,7 +43,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		%Camera3D.rotation_degrees.x -= event.relative.y * CAMERA_Y_SENSIBLITY
 		%Camera3D.rotation_degrees.x = clamp(%Camera3D.rotation_degrees.x, CAMERA_MAX_ROTATION_Y_DOWN, CAMERA_MAX_ROTATION_Y_UP)
 	
-		print(%Camera3D.rotation_degrees.x)
+		#print(%Camera3D.rotation_degrees.x)
 		
 	#######################################################
 	## Release mouse appearance on esc press ##
@@ -46,7 +51,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	#######################################################
 	## Player Movement ##
 	
@@ -58,7 +63,48 @@ func _physics_process(_delta: float) -> void:
 	var direction = transform.basis * input_direction_3D
 	
 	## applying speed separatly to x and z to avoid cancel jump & fall with a *0
-	velocity.z = direction.z * CHARACTER_MAX_SPEED
-	velocity.x = direction.x * CHARACTER_MAX_SPEED
+	#velocity.z = direction.z * CHARACTER_MAX_SPEED
+	#velocity.x = direction.x * CHARACTER_MAX_SPEED
+	
+	##trying to implement acceleration
+	## little bug when decceleration ends, always move the character slightly on the other axes
+	if direction.z != 0:
+		player_speed += CHARACTER_ACCELERATION*delta
+		player_speed=clamp(player_speed, -CHARACTER_MAX_SPEED, CHARACTER_MAX_SPEED)
+		
+		velocity.z =direction.z * player_speed
+		
+	elif velocity.z > 0 :
+		velocity.z -= CHARACTER_ACCELERATION * delta
+		if velocity.z < 0:
+			velocity.z=0
+	elif velocity.z < 0 :
+		velocity.z += CHARACTER_ACCELERATION * delta
+		if velocity.z > 0:
+			velocity.z=0
+			
+	if direction.x != 0:
+		player_speed += CHARACTER_ACCELERATION*delta
+		player_speed=clamp(player_speed, -CHARACTER_MAX_SPEED, CHARACTER_MAX_SPEED)
+		
+		velocity.x =direction.x * player_speed
+		
+	elif velocity.x > 0 :
+		velocity.x -= CHARACTER_ACCELERATION * delta
+		if velocity.x < 0:
+			velocity.x=0
+	elif velocity.x < 0 :
+		velocity.x += CHARACTER_ACCELERATION * delta
+		if velocity.x > 0:
+			velocity.x=0
+			
+			
+	## Applying gravity
+	velocity.y-= GRAVITY_VALUE * delta
+	
+	## JUMP 
+	if Input.is_action_just_pressed("jump"):
+		velocity.y = CHARACTER_JUMP_SPEED
+	
 	
 	move_and_slide()
