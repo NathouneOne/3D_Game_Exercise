@@ -17,6 +17,13 @@ var character_max_speed=CHARACTER_MAX_SPEED
 var jump_count=0
 
 
+######################################
+## TODO 							##
+## Add a zoom on right click 		##
+######################################
+
+
+
 func _ready() -> void:
 	
 	## Hide cursor
