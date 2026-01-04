@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dbwc8wu5a7p7k" path="res://player/projectile/projectile_3d.tscn" id="1_ciaf2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_84yui"]
-radius = 0.07935389
+radius = 0.09124854
 
 [node name="Bullet3D" type="Area3D"]
 top_level = true

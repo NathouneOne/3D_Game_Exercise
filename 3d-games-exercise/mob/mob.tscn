@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bt03ehm0oac5o" path="res://mob/bat/bat_model.tscn" id="1_7b8ug"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6jlfs"]
-radius = 0.3454095
+radius = 0.41068867
 
 [node name="Mob" type="RigidBody3D"]
 gravity_scale = 0.0
