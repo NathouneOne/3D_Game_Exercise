@@ -138,4 +138,4 @@ shadow_enabled = true
 environment = SubResource("Environment_ijeiy")
 
 [node name="Mob" parent="." instance=ExtResource("4_co4pm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -43)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -7)
