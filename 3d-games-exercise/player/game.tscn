@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnkat4hybt4ii"]
+[gd_scene load_steps=7 format=3 uid="uid://bnkat4hybt4ii"]
 
 [ext_resource type="Texture2D" uid="uid://bos7rridjkps1" path="res://level/checkboard.png" id="1_7ox5r"]
 [ext_resource type="PackedScene" uid="uid://cmrs715011hp2" path="res://player/player.tscn" id="1_ijeiy"]
 [ext_resource type="Material" uid="uid://b8ps5k84c17w8" path="res://level/Bridge_material.tres" id="2_nm7jd"]
+[ext_resource type="PackedScene" uid="uid://cri6s53livhvr" path="res://mob/mob.tscn" id="4_co4pm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nm7jd"]
 albedo_color = Color(0.8207382, 0.609915, 0.40319762, 1)
@@ -131,6 +132,10 @@ material = ExtResource("2_nm7jd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.37913316, 0.92534214, 0, -0.92534214, 0.37913316, 0, 20.96296, 0)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ijeiy")
+
+[node name="Mob" parent="." instance=ExtResource("4_co4pm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -43)

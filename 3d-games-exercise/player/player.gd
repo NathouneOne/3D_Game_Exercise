@@ -27,10 +27,6 @@ var fov=FOV_ORIGINAL
 var camera_x_sensibility=CAMERA_X_SENSIBLITY
 var camera_y_sensibility=CAMERA_Y_SENSIBLITY
 
-######################################
-## TODO 							##
-## Add a zoom on right click 		##
-######################################
 
 
 
@@ -155,7 +151,7 @@ func _physics_process(delta: float) -> void:
 		shoot_bullet()
 	
 	##################################################
-	## trying to zoom on right click ##
+	## Zoom on right click ##
 	if Input.is_action_pressed("zoom") :
 		fov-=ZOOM_SPEED*delta
 	else :
