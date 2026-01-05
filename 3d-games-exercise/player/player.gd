@@ -139,8 +139,9 @@ func _physics_process(delta: float) -> void:
 	velocity.y-= GRAVITY_VALUE * delta
 	
 	## reset position at start if falling
-	if position.y < FALLING_VALUE_RESET :
-		position=Vector3(0,1,0)
+	## Eventually done with "killing plane" in game.gd
+	#if position.y < FALLING_VALUE_RESET :
+	#	position=Vector3(0,1,0)
 	
 	move_and_slide()
 	

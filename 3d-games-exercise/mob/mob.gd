@@ -28,7 +28,6 @@ func take_damage():
 		apply_central_impulse(up_repulsive_force+direction2*15)
 		timer.start()
 		lock_rotation = false
-		mob_died.emit()
 		ko_audio.play()
 	
 	
@@ -45,8 +44,8 @@ func _physics_process(_delta: float) -> void:
 	
 	#print(bat_model.rotation.x, bat_model.rotation.z)
 	
-	
 
 
 func _on_timer_timeout() -> void:
 	queue_free()
+	mob_died.emit()
