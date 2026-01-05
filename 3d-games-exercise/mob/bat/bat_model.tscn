@@ -175,7 +175,6 @@ animation = &"Idle"
 mix_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gwaj3"]
-graph_offset = Vector2(-319.07245, -14.642578)
 nodes/output/position = Vector2(920, 140)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_scfiv")
 nodes/Idle/position = Vector2(280, 40)
@@ -189,19 +188,19 @@ node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Idle", &"OneShot"
 script = ExtResource("2_vgr6s")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, 0.0035759364, 0)
-bones/1/rotation = Quaternion(0.17277549, 0.013142743, -0.5917635, 0.7872687)
-bones/2/rotation = Quaternion(0.025755372, 0.0114133945, 0.39572462, 0.9179371)
-bones/3/rotation = Quaternion(-0.09492859, 0.019008836, 0.30722556, 0.9466994)
-bones/4/rotation = Quaternion(0.17277549, -0.013142743, 0.5917635, 0.7872687)
-bones/5/rotation = Quaternion(0.025755372, -0.0114133945, -0.39572462, 0.9179371)
-bones/6/rotation = Quaternion(-0.09492859, -0.019008836, -0.30722556, 0.9466994)
+bones/0/position = Vector3(0, 0.014231526, 0)
+bones/1/rotation = Quaternion(0.214012, -0.018641759, -0.5934251, 0.775692)
+bones/2/rotation = Quaternion(0.101681694, 0.04668763, 0.41464105, 0.90308017)
+bones/3/rotation = Quaternion(-0.011182197, 0.045570225, 0.33961523, 0.9393934)
+bones/4/rotation = Quaternion(0.214012, 0.018641759, 0.5934251, 0.775692)
+bones/5/rotation = Quaternion(0.101681694, -0.04668763, -0.41464105, 0.90308017)
+bones/6/rotation = Quaternion(-0.011182197, -0.045570225, -0.33961523, 0.9393934)
 bones/7/position = Vector3(0.1309921, -0.22739176, -0.087851465)
 bones/7/rotation = Quaternion(0.26196837, 0.08345512, 0.26575127, 0.9240044)
-bones/8/rotation = Quaternion(3.11453e-08, 0.5491551, 0.8357205, 2.0539806e-08)
+bones/8/rotation = Quaternion(3.2469433e-08, 0.5765688, 0.8170486, 1.9052258e-08)
 bones/10/position = Vector3(-0.1309921, -0.22739176, -0.087851465)
 bones/10/rotation = Quaternion(0.26196837, -0.083455116, -0.26575127, 0.9240044)
-bones/11/rotation = Quaternion(2.421987e-08, 0.54915524, 0.8357204, 3.986728e-08)
+bones/11/rotation = Quaternion(2.639552e-08, 0.5765688, 0.8170486, 4.848415e-08)
 
 [node name="bat" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = ExtResource("2_030dj")

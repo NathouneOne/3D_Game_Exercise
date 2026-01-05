@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg54dssde2aov"]
+
+[ext_resource type="PackedScene" uid="uid://bw2m6rpraye2r" path="res://mob/spawner/spawner_model.glb" id="1_1i28n"]
+
+[node name="spawner_model" instance=ExtResource("1_1i28n")]

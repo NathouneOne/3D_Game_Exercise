@@ -1,8 +1,10 @@
 extends RigidBody3D
 
-const MOBSPEED = 6.5
+signal mob_died
+
 const PLAYER_DAMAGE=1
 
+var mob_speed = randf_range(4.0,6.5)
 var health = 5
 
 @onready var bat_model: Node3D = %Bat_model
@@ -23,6 +25,7 @@ func take_damage():
 		apply_central_impulse(up_repulsive_force+direction2*15)
 		timer.start()
 		lock_rotation = false
+		mob_died.emit()
 	
 	
 
@@ -30,9 +33,9 @@ func take_damage():
 func _physics_process(_delta: float) -> void:
 	
 	var direction = global_position.direction_to(player.global_position)
-	direction.y+=0.5
+	direction.y+=0.2
 	
-	linear_velocity=direction*MOBSPEED
+	linear_velocity=direction*mob_speed
 	bat_model.rotation.y=Vector3.FORWARD.signed_angle_to(direction, Vector3.UP)+PI
 	
 	
