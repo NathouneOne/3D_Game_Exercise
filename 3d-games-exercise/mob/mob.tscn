@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cri6s53livhvr"]
+[gd_scene load_steps=6 format=3 uid="uid://cri6s53livhvr"]
 
 [ext_resource type="Script" uid="uid://bdn4fxjcrr6b" path="res://mob/mob.gd" id="1_6jlfs"]
 [ext_resource type="PackedScene" uid="uid://bt03ehm0oac5o" path="res://mob/bat/bat_model.tscn" id="1_7b8ug"]
+[ext_resource type="AudioStream" uid="uid://bx3idpeigglls" path="res://mob/mob_take_damage.wav" id="3_mixeo"]
+[ext_resource type="AudioStream" uid="uid://bjajl884tgyrw" path="res://mob/mob_ko.wav" id="4_jkfaf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6jlfs"]
 radius = 0.41068867
@@ -22,5 +24,13 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
+
+[node name="Take_Damage_audio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_mixeo")
+
+[node name="Ko_audio" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_jkfaf")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

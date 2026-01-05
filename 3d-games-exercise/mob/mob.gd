@@ -10,11 +10,14 @@ var health = 5
 @onready var bat_model: Node3D = %Bat_model
 @onready var player = $/root/GAME/Player
 @onready var timer: Timer = %Timer
+@onready var take_damage_audio: AudioStreamPlayer3D = %Take_Damage_audio
+@onready var ko_audio: AudioStreamPlayer3D = %Ko_audio
 
 func take_damage():
 	if(health==0):
 		return
 	
+	take_damage_audio.play()
 	bat_model.hurt()
 	health-=PLAYER_DAMAGE
 	if health==0:
@@ -26,6 +29,7 @@ func take_damage():
 		timer.start()
 		lock_rotation = false
 		mob_died.emit()
+		ko_audio.play()
 	
 	
 
